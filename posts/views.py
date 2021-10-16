@@ -7,6 +7,12 @@ from posts.serializers import UserPostSerializer
 
 
 class UserPostViewSet(viewsets.ModelViewSet):
+    queryset = UserPost.objects.all()
+    serializer_class = UserPostSerializer
+    permission_classes = [permissions.AllowAny]
+
+
+class GlobalFeedViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = UserPost.objects.all().order_by("-pub_date")
     serializer_class = UserPostSerializer
     permission_classes = [permissions.AllowAny]

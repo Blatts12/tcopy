@@ -18,9 +18,18 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserPostSerializer(serializers.ModelSerializer):
-    author = UserSerializer()
+    author = UserSerializer(read_only=True)
+    author_id = serializers.PrimaryKeyRelatedField(
+        source="User", queryset=User.objects.all(), write_only=True
+    )
 
     class Meta:
         model = UserPost
         fields = "__all__"
-        read_only_fields = ["author"]
+
+    def create(self, validated_data):
+        userPost = UserPost.objects.create(
+            content=validated_data["content"], author_id=validated_data["User"].id
+        )
+
+        return userPost
