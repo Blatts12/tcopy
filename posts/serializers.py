@@ -1,19 +1,7 @@
 from rest_framework import serializers
 from accounts.models import CustomUser
+from accounts.serializers import UserSerializer
 from posts.models import UserPost
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = [
-            "id",
-            "username",
-            "email",
-            "is_staff",
-            "is_active",
-            "date_joined",
-        ]
 
 
 class UserPostSerializer(serializers.ModelSerializer):
@@ -28,7 +16,7 @@ class UserPostSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         userPost = UserPost.objects.create(
-            content=validated_data["content"], author_id=validated_data["User"].id
+            content=validated_data["content"], author_id=validated_data["CustomUser"].id
         )
 
         return userPost
