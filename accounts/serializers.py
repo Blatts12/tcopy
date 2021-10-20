@@ -7,20 +7,29 @@ from accounts.models import CustomUser
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ("id", "last_login", "date_joined", "email", "user_tag", "is_staff")
+        fields = (
+            "id",
+            "last_login",
+            "date_joined",
+            "email",
+            "user_tag",
+            "display_name",
+            "is_staff",
+        )
 
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ("id", "email", "user_tag", "password")
-        extra_kwargs = {"is_staff": {"read_only": True}}
+        fields = ("id", "email", "user_tag", "display_name", "password")
+        # extra_kwargs = {"is_staff": {"read_only": True}}
 
     def create(self, validated_data):
         user = CustomUser.objects.create_user(
             validated_data["email"],
             validated_data["password"],
-            validated_data["author_tag"],
+            validated_data["user_tag"],
+            validated_data["display_name"],
         )
 
         return user
