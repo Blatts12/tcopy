@@ -1,12 +1,11 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-
+from accounts.models import CustomUser
 from posts.models import UserPost
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = CustomUser
         fields = [
             "id",
             "username",
@@ -20,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserPostSerializer(serializers.ModelSerializer):
     author = UserSerializer(read_only=True)
     author_id = serializers.PrimaryKeyRelatedField(
-        source="User", queryset=User.objects.all(), write_only=True
+        source="CustomUser", queryset=CustomUser.objects.all(), write_only=True
     )
 
     class Meta:

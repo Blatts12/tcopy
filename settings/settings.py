@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "corsheaders",
-    "posts",
     "rest_framework",
+    "corsheaders",
+    "accounts",
+    "posts",
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,9 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# Custom User Model
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 
 # Password validation
