@@ -15,7 +15,6 @@ Backend for tcopy - Twitter Like App
 ### For v0.1
 
 - [x] Global Feed - Endpoint with cursor pagination
-- [ ] User Feed - Endpoint with cursor pagination
 - [ ] User Liked Feed - Endpoint with cursor pagination
 - [x] Post REST
 - [ ] User REST
