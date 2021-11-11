@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from accounts.models import CustomUser
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserAuthSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = (
@@ -12,6 +12,19 @@ class UserSerializer(serializers.ModelSerializer):
             "last_login",
             "date_joined",
             "email",
+            "user_tag",
+            "display_name",
+            "is_staff",
+        )
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = (
+            "id",
+            "last_login",
+            "date_joined",
             "user_tag",
             "display_name",
             "is_staff",
