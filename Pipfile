@@ -10,6 +10,11 @@ django-cors-headers = "*"
 django-filter = "*"
 markdown = "*"
 django-rest-knox = {file = "https://github.com/James1345/django-rest-knox/archive/develop.zip"}
+django-environ = "*"
+psycopg2 = "*"
+gunicorn = "*"
+pytz = "*"
+dj-database-url = "*"
 
 [dev-packages]
 flake8 = "*"
